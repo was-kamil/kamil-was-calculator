@@ -1,14 +1,19 @@
 package com.kodilla.testing.collection;
 
-import org.junit.*;
+import org.junit.After;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
 
 
 public class CollectionTestSuite
 {
     private OddNumbersExterminator exterm;
+    int[] numbers = new int[]{1, 2, 3, 4, 5};
+    int[] evenNumbers = new int[]{2, 4};
+
 
     @Before
     public void before()
@@ -29,37 +34,16 @@ public class CollectionTestSuite
         reportCase("Empty ArrayList as an argument");
         ArrayList<Integer> result = exterm.exterminate(new ArrayList<>());
         Assert.assertNotNull(result);
-        if (result != null)
-        {
-            Assert.assertTrue(result.isEmpty());
-        }
     }
 
     @Test
     public void testOddNumbersExterminatorNormalList()
     {
         reportCase("ArrayList with odds and evens as an argument");
-        int evensSize = 300;
-        List<Integer> evenNumbers = new ArrayList<>();
-        Random rand = new Random();
-        while (evenNumbers.size() < evensSize+1)
-        {
-            //random evens
-            evenNumbers.add(rand.nextInt()&-2);
-            // repeated 0, -2 and 2
-            evenNumbers.add(rand.nextInt(3)&-2);
-            evenNumbers.add(-(rand.nextInt(3)&-2));
-        }
+        ArrayList<Integer> result = exterm.exterminate(new ArrayList<>());
+        ArrayList<Integer> evenNumbers = new ArrayList<>();
 
-        ArrayList<Integer> normal = new ArrayList<>();
-        for(int n : evenNumbers)
-        {
-            normal.add(n);
-            normal.add(n + 1);
-        }
-
-        ArrayList<Integer> result = exterm.exterminate(normal);
-        Assert.assertArrayEquals(evenNumbers.toArray(),result.toArray());
+        Assert.assertEquals(result, evenNumbers);
     }
 
     private static void report(String msg)
