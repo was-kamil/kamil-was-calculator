@@ -1,18 +1,13 @@
 package com.kodilla.testing.shape;
 
-class Circle implements Shape
-{
-    public Circle()
-    {
+
+class Circle implements Shape {
+
+    public String getShapeName() {
+        return "circle";
     }
 
-    public String getShapeName()
-    {
-        return "Circle";
-    }
-
-    public int getField()
-    {
+    public int getField() {
         return 200;
     }
 }

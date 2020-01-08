@@ -1,58 +1,62 @@
 package com.kodilla.testing.collection;
 
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.*;
+import java.util.*;
 
-import java.util.ArrayList;
+import static org.junit.Assert.assertEquals;
 
 
-public class CollectionTestSuite
-{
-    private OddNumbersExterminator exterm;
-    int[] numbers = new int[]{1, 2, 3, 4, 5};
-    int[] evenNumbers = new int[]{2, 4};
+
+public class CollectionTestSuite {
+
+    private OddNumbersExterminator collection = new OddNumbersExterminator();
 
 
     @Before
     public void before()
-    {
-        report("Test unit BEGIN");
-        exterm = new OddNumbersExterminator();
-    }
+    { System.out.println("Test unit BEGIN"); }
 
     @After
     public void after()
-    {
-        report("Test unit END");
+    { System.out.println("Test unit END" + "\n"); }
+
+
+    @Test
+    public void testOddNumbersExterminatorEmptyList() {
+
+            System.out.println("Empty ArrayList as an argument");
+
+        ArrayList<Integer> numbers = new ArrayList<>();
+/*
+            System.out.println(numbers.size());
+*/
+        Object result = collection.exterminate(numbers);
+
+        assertEquals(numbers, result);
     }
 
     @Test
-    public void testOddNumbersExterminatorEmptyList()
-    {
-        reportCase("Empty ArrayList as an argument");
-        ArrayList<Integer> result = exterm.exterminate(new ArrayList<>());
-        Assert.assertNotNull(result);
-    }
+    public void testOddNumbersExterminatorNormalList() {
 
-    @Test
-    public void testOddNumbersExterminatorNormalList()
-    {
-        reportCase("ArrayList with odds and evens as an argument");
-        ArrayList<Integer> result = exterm.exterminate(new ArrayList<>());
+            System.out.println("ArrayList compare");
+
+        ArrayList<Integer> numbers = new ArrayList<>();
+            numbers.add(1);
+            numbers.add(2);
+            numbers.add(3);
+            numbers.add(4);
+            numbers.add(5);
+/*
+            System.out.println(numbers.size());
+*/
         ArrayList<Integer> evenNumbers = new ArrayList<>();
+            evenNumbers.add(2);
+            evenNumbers.add(4);
+/*
+            System.out.println(evenNumbers.size());
+*/
+        Object result = collection.exterminate(numbers);
 
-        Assert.assertEquals(result, evenNumbers);
-    }
-
-    private static void report(String msg)
-    {
-        System.out.println(msg);
-    }
-
-    private static void reportCase(String title)
-    {
-        System.out.printf("Case: %s\n", title);
+        assertEquals(evenNumbers, result);
     }
 }
