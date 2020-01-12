@@ -24,131 +24,22 @@ public class ForumStatisticsCalculateTestSuite {
         System.out.println("-------------------------------------");
     }
 
+
     @Test
     public void testCalculateAdvStatisticsWhenNoPosts() {
 
         Statistics statisticsMock = mock(Statistics.class);
 
-        List<String> testUsers = new List<String>() {
-            @Override
-            public int size() {
-                return 1;
-            }
-
-            @Override
-            public boolean isEmpty() {
-                return false;
-            }
-
-            @Override
-            public boolean contains(Object o) {
-                return false;
-            }
-
-            @Override
-            public Iterator<String> iterator() {
-                return null;
-            }
-
-            @Override
-            public Object[] toArray() {
-                return new Object[0];
-            }
-
-            @Override
-            public <T> T[] toArray(T[] a) {
-                return null;
-            }
-
-            @Override
-            public boolean add(String s) {
-                return false;
-            }
-
-            @Override
-            public boolean remove(Object o) {
-                return false;
-            }
-
-            @Override
-            public boolean containsAll(Collection<?> c) {
-                return false;
-            }
-
-            @Override
-            public boolean addAll(Collection<? extends String> c) {
-                return false;
-            }
-
-            @Override
-            public boolean addAll(int index, Collection<? extends String> c) {
-                return false;
-            }
-
-            @Override
-            public boolean removeAll(Collection<?> c) {
-                return false;
-            }
-
-            @Override
-            public boolean retainAll(Collection<?> c) {
-                return false;
-            }
-
-            @Override
-            public void clear() {
-
-            }
-
-            @Override
-            public String get(int index) {
-                return null;
-            }
-
-            @Override
-            public String set(int index, String element) {
-                return null;
-            }
-
-            @Override
-            public void add(int index, String element) {
-
-            }
-
-            @Override
-            public String remove(int index) {
-                return null;
-            }
-
-            @Override
-            public int indexOf(Object o) {
-                return 0;
-            }
-
-            @Override
-            public int lastIndexOf(Object o) {
-                return 0;
-            }
-
-            @Override
-            public ListIterator<String> listIterator() {
-                return null;
-            }
-
-            @Override
-            public ListIterator<String> listIterator(int index) {
-                return null;
-            }
-
-            @Override
-            public List<String> subList(int fromIndex, int toIndex) {
-                return null;
-            }
-        };
+        List<String> testUsers = new ArrayList<>();
+            testUsers.add("user1");
+            testUsers.add("user2");
+            testUsers.add("user3");
+            testUsers.add("user4");
+            testUsers.add("user5");
 
         when(statisticsMock.usersNames()).thenReturn(testUsers);
         when(statisticsMock.postsCount()).thenReturn(0);
-        when(statisticsMock.commentsCount()).thenReturn(120);
+        when(statisticsMock.commentsCount()).thenReturn(100);
 
         ForumStatisticsCalculate forumStatistics = new ForumStatisticsCalculate(statisticsMock);
 
@@ -163,133 +54,23 @@ public class ForumStatisticsCalculateTestSuite {
 
         Statistics statisticsMock = mock(Statistics.class);
 
-        List<String> testUsers = new List<String>() {
-            @Override
-            public int size() {
-                return 1;
-            }
-
-            @Override
-            public boolean isEmpty() {
-                return false;
-            }
-
-            @Override
-            public boolean contains(Object o) {
-                return false;
-            }
-
-            @Override
-            public Iterator<String> iterator() {
-                return null;
-            }
-
-            @Override
-            public Object[] toArray() {
-                return new Object[0];
-            }
-
-            @Override
-            public <T> T[] toArray(T[] a) {
-                return null;
-            }
-
-            @Override
-            public boolean add(String s) {
-                return false;
-            }
-
-            @Override
-            public boolean remove(Object o) {
-                return false;
-            }
-
-            @Override
-            public boolean containsAll(Collection<?> c) {
-                return false;
-            }
-
-            @Override
-            public boolean addAll(Collection<? extends String> c) {
-                return false;
-            }
-
-            @Override
-            public boolean addAll(int index, Collection<? extends String> c) {
-                return false;
-            }
-
-            @Override
-            public boolean removeAll(Collection<?> c) {
-                return false;
-            }
-
-            @Override
-            public boolean retainAll(Collection<?> c) {
-                return false;
-            }
-
-            @Override
-            public void clear() {
-
-            }
-
-            @Override
-            public String get(int index) {
-                return null;
-            }
-
-            @Override
-            public String set(int index, String element) {
-                return null;
-            }
-
-            @Override
-            public void add(int index, String element) {
-
-            }
-
-            @Override
-            public String remove(int index) {
-                return null;
-            }
-
-            @Override
-            public int indexOf(Object o) {
-                return 0;
-            }
-
-            @Override
-            public int lastIndexOf(Object o) {
-                return 0;
-            }
-
-            @Override
-            public ListIterator<String> listIterator() {
-                return null;
-            }
-
-            @Override
-            public ListIterator<String> listIterator(int index) {
-                return null;
-            }
-
-            @Override
-            public List<String> subList(int fromIndex, int toIndex) {
-                return null;
-            }
-        };
+        List<String> testUsers = new ArrayList<>();
+            testUsers.add("user1");
+            testUsers.add("user2");
+            testUsers.add("user3");
+            testUsers.add("user4");
+            testUsers.add("user5");
 
         when(statisticsMock.usersNames()).thenReturn(testUsers);
         when(statisticsMock.postsCount()).thenReturn(1000);
-        when(statisticsMock.commentsCount()).thenReturn(1);
+        when(statisticsMock.commentsCount()).thenReturn(100);
 
         ForumStatisticsCalculate forumStatistics = new ForumStatisticsCalculate(statisticsMock);
 
         forumStatistics.calculateAdvStatistics(statisticsMock);
         forumStatistics.showStatistics();
 
-        Assert.assertEquals(1000, forumStatistics.averageNumberPostsPerUser);
+        Assert.assertEquals(1000,forumStatistics.statistics.postsCount(),0);
     }
 
     @Test
@@ -297,122 +78,12 @@ public class ForumStatisticsCalculateTestSuite {
 
         Statistics statisticsMock = mock(Statistics.class);
 
-        List<String> testUsers = new List<String>() {
-            @Override
-            public int size() {
-                return 1;
-            }
-
-            @Override
-            public boolean isEmpty() {
-                return false;
-            }
-
-            @Override
-            public boolean contains(Object o) {
-                return false;
-            }
-
-            @Override
-            public Iterator<String> iterator() {
-                return null;
-            }
-
-            @Override
-            public Object[] toArray() {
-                return new Object[0];
-            }
-
-            @Override
-            public <T> T[] toArray(T[] a) {
-                return null;
-            }
-
-            @Override
-            public boolean add(String s) {
-                return false;
-            }
-
-            @Override
-            public boolean remove(Object o) {
-                return false;
-            }
-
-            @Override
-            public boolean containsAll(Collection<?> c) {
-                return false;
-            }
-
-            @Override
-            public boolean addAll(Collection<? extends String> c) {
-                return false;
-            }
-
-            @Override
-            public boolean addAll(int index, Collection<? extends String> c) {
-                return false;
-            }
-
-            @Override
-            public boolean removeAll(Collection<?> c) {
-                return false;
-            }
-
-            @Override
-            public boolean retainAll(Collection<?> c) {
-                return false;
-            }
-
-            @Override
-            public void clear() {
-
-            }
-
-            @Override
-            public String get(int index) {
-                return null;
-            }
-
-            @Override
-            public String set(int index, String element) {
-                return null;
-            }
-
-            @Override
-            public void add(int index, String element) {
-
-            }
-
-            @Override
-            public String remove(int index) {
-                return null;
-            }
-
-            @Override
-            public int indexOf(Object o) {
-                return 0;
-            }
-
-            @Override
-            public int lastIndexOf(Object o) {
-                return 0;
-            }
-
-            @Override
-            public ListIterator<String> listIterator() {
-                return null;
-            }
-
-            @Override
-            public ListIterator<String> listIterator(int index) {
-                return null;
-            }
-
-            @Override
-            public List<String> subList(int fromIndex, int toIndex) {
-                return null;
-            }
-        };
+        List<String> testUsers = new ArrayList<>();
+            testUsers.add("user1");
+            testUsers.add("user2");
+            testUsers.add("user3");
+            testUsers.add("user4");
+            testUsers.add("user5");
 
         when(statisticsMock.usersNames()).thenReturn(testUsers);
         when(statisticsMock.postsCount()).thenReturn(123);
@@ -423,7 +94,7 @@ public class ForumStatisticsCalculateTestSuite {
         forumStatistics.calculateAdvStatistics(statisticsMock);
         forumStatistics.showStatistics();
 
-        Assert.assertEquals(0, forumStatistics.averageNumberCommentsPerUser);
+        Assert.assertEquals(0, forumStatistics.statistics.commentsCount(),0);
     }
 
     @Test
@@ -431,122 +102,12 @@ public class ForumStatisticsCalculateTestSuite {
 
         Statistics statisticsMock = mock(Statistics.class);
 
-        List<String> testUsers = new List<String>() {
-            @Override
-            public int size() {
-                return 1;
-            }
-
-            @Override
-            public boolean isEmpty() {
-                return false;
-            }
-
-            @Override
-            public boolean contains(Object o) {
-                return false;
-            }
-
-            @Override
-            public Iterator<String> iterator() {
-                return null;
-            }
-
-            @Override
-            public Object[] toArray() {
-                return new Object[0];
-            }
-
-            @Override
-            public <T> T[] toArray(T[] a) {
-                return null;
-            }
-
-            @Override
-            public boolean add(String s) {
-                return false;
-            }
-
-            @Override
-            public boolean remove(Object o) {
-                return false;
-            }
-
-            @Override
-            public boolean containsAll(Collection<?> c) {
-                return false;
-            }
-
-            @Override
-            public boolean addAll(Collection<? extends String> c) {
-                return false;
-            }
-
-            @Override
-            public boolean addAll(int index, Collection<? extends String> c) {
-                return false;
-            }
-
-            @Override
-            public boolean removeAll(Collection<?> c) {
-                return false;
-            }
-
-            @Override
-            public boolean retainAll(Collection<?> c) {
-                return false;
-            }
-
-            @Override
-            public void clear() {
-
-            }
-
-            @Override
-            public String get(int index) {
-                return null;
-            }
-
-            @Override
-            public String set(int index, String element) {
-                return null;
-            }
-
-            @Override
-            public void add(int index, String element) {
-
-            }
-
-            @Override
-            public String remove(int index) {
-                return null;
-            }
-
-            @Override
-            public int indexOf(Object o) {
-                return 0;
-            }
-
-            @Override
-            public int lastIndexOf(Object o) {
-                return 0;
-            }
-
-            @Override
-            public ListIterator<String> listIterator() {
-                return null;
-            }
-
-            @Override
-            public ListIterator<String> listIterator(int index) {
-                return null;
-            }
-
-            @Override
-            public List<String> subList(int fromIndex, int toIndex) {
-                return null;
-            }
-        };
+        List<String> testUsers = new ArrayList<>();
+            testUsers.add("user1");
+            testUsers.add("user2");
+            testUsers.add("user3");
+            testUsers.add("user4");
+            testUsers.add("user5");
 
         when(statisticsMock.usersNames()).thenReturn(testUsers);
         when(statisticsMock.postsCount()).thenReturn(1000);
@@ -565,122 +126,12 @@ public class ForumStatisticsCalculateTestSuite {
 
         Statistics statisticsMock = mock(Statistics.class);
 
-        List<String> testUsers = new List<String>() {
-            @Override
-            public int size() {
-                return 10;
-            }
-
-            @Override
-            public boolean isEmpty() {
-                return false;
-            }
-
-            @Override
-            public boolean contains(Object o) {
-                return false;
-            }
-
-            @Override
-            public Iterator<String> iterator() {
-                return null;
-            }
-
-            @Override
-            public Object[] toArray() {
-                return new Object[0];
-            }
-
-            @Override
-            public <T> T[] toArray(T[] a) {
-                return null;
-            }
-
-            @Override
-            public boolean add(String s) {
-                return false;
-            }
-
-            @Override
-            public boolean remove(Object o) {
-                return false;
-            }
-
-            @Override
-            public boolean containsAll(Collection<?> c) {
-                return false;
-            }
-
-            @Override
-            public boolean addAll(Collection<? extends String> c) {
-                return false;
-            }
-
-            @Override
-            public boolean addAll(int index, Collection<? extends String> c) {
-                return false;
-            }
-
-            @Override
-            public boolean removeAll(Collection<?> c) {
-                return false;
-            }
-
-            @Override
-            public boolean retainAll(Collection<?> c) {
-                return false;
-            }
-
-            @Override
-            public void clear() {
-
-            }
-
-            @Override
-            public String get(int index) {
-                return null;
-            }
-
-            @Override
-            public String set(int index, String element) {
-                return null;
-            }
-
-            @Override
-            public void add(int index, String element) {
-
-            }
-
-            @Override
-            public String remove(int index) {
-                return null;
-            }
-
-            @Override
-            public int indexOf(Object o) {
-                return 0;
-            }
-
-            @Override
-            public int lastIndexOf(Object o) {
-                return 0;
-            }
-
-            @Override
-            public ListIterator<String> listIterator() {
-                return null;
-            }
-
-            @Override
-            public ListIterator<String> listIterator(int index) {
-                return null;
-            }
-
-            @Override
-            public List<String> subList(int fromIndex, int toIndex) {
-                return null;
-            }
-        };
+        List<String> testUsers = new ArrayList<>();
+            testUsers.add("user1");
+            testUsers.add("user2");
+            testUsers.add("user3");
+            testUsers.add("user4");
+            testUsers.add("user5");
 
         when(statisticsMock.usersNames()).thenReturn(testUsers);
         when(statisticsMock.postsCount()).thenReturn(10);
@@ -699,126 +150,11 @@ public class ForumStatisticsCalculateTestSuite {
 
         Statistics statisticsMock = mock(Statistics.class);
 
-        List<String> testUsers = new List<String>() {
-            @Override
-            public int size() {
-                return 0;
-            }
-
-            @Override
-            public boolean isEmpty() {
-                return false;
-            }
-
-            @Override
-            public boolean contains(Object o) {
-                return false;
-            }
-
-            @Override
-            public Iterator<String> iterator() {
-                return null;
-            }
-
-            @Override
-            public Object[] toArray() {
-                return new Object[0];
-            }
-
-            @Override
-            public <T> T[] toArray(T[] a) {
-                return null;
-            }
-
-            @Override
-            public boolean add(String s) {
-                return false;
-            }
-
-            @Override
-            public boolean remove(Object o) {
-                return false;
-            }
-
-            @Override
-            public boolean containsAll(Collection<?> c) {
-                return false;
-            }
-
-            @Override
-            public boolean addAll(Collection<? extends String> c) {
-                return false;
-            }
-
-            @Override
-            public boolean addAll(int index, Collection<? extends String> c) {
-                return false;
-            }
-
-            @Override
-            public boolean removeAll(Collection<?> c) {
-                return false;
-            }
-
-            @Override
-            public boolean retainAll(Collection<?> c) {
-                return false;
-            }
-
-            @Override
-            public void clear() {
-
-            }
-
-            @Override
-            public String get(int index) {
-                return null;
-            }
-
-            @Override
-            public String set(int index, String element) {
-                return null;
-            }
-
-            @Override
-            public void add(int index, String element) {
-
-            }
-
-            @Override
-            public String remove(int index) {
-                return null;
-            }
-
-            @Override
-            public int indexOf(Object o) {
-                return 0;
-            }
-
-            @Override
-            public int lastIndexOf(Object o) {
-                return 0;
-            }
-
-            @Override
-            public ListIterator<String> listIterator() {
-                return null;
-            }
-
-            @Override
-            public ListIterator<String> listIterator(int index) {
-                return null;
-            }
-
-            @Override
-            public List<String> subList(int fromIndex, int toIndex) {
-                return null;
-            }
-        };
+        List<String> testUsers = new ArrayList<>();
 
         when(statisticsMock.usersNames()).thenReturn(testUsers);
         when(statisticsMock.postsCount()).thenReturn(1000);
-        when(statisticsMock.commentsCount()).thenReturn(1000);
+        when(statisticsMock.commentsCount()).thenReturn(100);
 
         ForumStatisticsCalculate forumStatistics = new ForumStatisticsCalculate(statisticsMock);
 
@@ -833,132 +169,21 @@ public class ForumStatisticsCalculateTestSuite {
 
         Statistics statisticsMock = mock(Statistics.class);
 
-        List<String> testUsers = new List<String>() {
-            @Override
-            public int size() {
-                return 100;
+        List<String> testUsers = new ArrayList<>();
+
+            for(int i =0; i<100; i++) {
+                testUsers.add("User nr " + i);
             }
-
-            @Override
-            public boolean isEmpty() {
-                return false;
-            }
-
-            @Override
-            public boolean contains(Object o) {
-                return false;
-            }
-
-            @Override
-            public Iterator<String> iterator() {
-                return null;
-            }
-
-            @Override
-            public Object[] toArray() {
-                return new Object[0];
-            }
-
-            @Override
-            public <T> T[] toArray(T[] a) {
-                return null;
-            }
-
-            @Override
-            public boolean add(String s) {
-                return false;
-            }
-
-            @Override
-            public boolean remove(Object o) {
-                return false;
-            }
-
-            @Override
-            public boolean containsAll(Collection<?> c) {
-                return false;
-            }
-
-            @Override
-            public boolean addAll(Collection<? extends String> c) {
-                return false;
-            }
-
-            @Override
-            public boolean addAll(int index, Collection<? extends String> c) {
-                return false;
-            }
-
-            @Override
-            public boolean removeAll(Collection<?> c) {
-                return false;
-            }
-
-            @Override
-            public boolean retainAll(Collection<?> c) {
-                return false;
-            }
-
-            @Override
-            public void clear() {
-
-            }
-
-            @Override
-            public String get(int index) {
-                return null;
-            }
-
-            @Override
-            public String set(int index, String element) {
-                return null;
-            }
-
-            @Override
-            public void add(int index, String element) {
-
-            }
-
-            @Override
-            public String remove(int index) {
-                return null;
-            }
-
-            @Override
-            public int indexOf(Object o) {
-                return 0;
-            }
-
-            @Override
-            public int lastIndexOf(Object o) {
-                return 0;
-            }
-
-            @Override
-            public ListIterator<String> listIterator() {
-                return null;
-            }
-
-            @Override
-            public ListIterator<String> listIterator(int index) {
-                return null;
-            }
-
-            @Override
-            public List<String> subList(int fromIndex, int toIndex) {
-                return null;
-            }
-        };
 
         when(statisticsMock.usersNames()).thenReturn(testUsers);
         when(statisticsMock.postsCount()).thenReturn(1000);
-        when(statisticsMock.commentsCount()).thenReturn(1000);
+        when(statisticsMock.commentsCount()).thenReturn(100);
 
         ForumStatisticsCalculate forumStatistics = new ForumStatisticsCalculate(statisticsMock);
 
         forumStatistics.calculateAdvStatistics(statisticsMock);
         forumStatistics.showStatistics();
 
-        Assert.assertEquals(10, forumStatistics.averageNumberCommentsPerUser);
+        Assert.assertEquals(100, forumStatistics.statistics.commentsCount(), 0);
     }
 }
