@@ -49,7 +49,6 @@ public class CollectionTestSuite {
 
         assertNotNull(result);
         assertEquals(evenList, result);
-        assertTrue(result.contains(evenList));
 
     }
 }
