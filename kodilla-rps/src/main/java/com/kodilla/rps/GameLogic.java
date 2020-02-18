@@ -6,7 +6,7 @@ import static com.kodilla.rps.MainLogic.*;
 
 public class GameLogic {
 
-    private Object userName;
+    private String userName;
     private MainLogic userSelect;
     private int userPoints;
     private int computerPoints;
