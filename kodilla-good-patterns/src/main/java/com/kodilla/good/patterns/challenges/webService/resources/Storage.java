@@ -2,7 +2,7 @@ package com.kodilla.good.patterns.challenges.webService.resources;
 import com.kodilla.good.patterns.challenges.webService.data.Order;
 
 
-public interface StorageInterface {
+public interface Storage {
 
     boolean save(Order order);
 

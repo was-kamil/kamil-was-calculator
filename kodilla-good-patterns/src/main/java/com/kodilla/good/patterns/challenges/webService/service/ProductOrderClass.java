@@ -1,17 +1,17 @@
 package com.kodilla.good.patterns.challenges.webService.service;
 
 import com.kodilla.good.patterns.challenges.webService.data.*;
-import com.kodilla.good.patterns.challenges.webService.resources.StorageInterface;
+import com.kodilla.good.patterns.challenges.webService.resources.Storage;
 
 
 public class ProductOrderClass implements ProductOrderService {
 
     private final ProductDetailService productDetailService;
-    private final StorageInterface storageInterface;
+    private final Storage storage;
 
-    public ProductOrderClass(ProductDetailService productDetailService, StorageInterface storageInterface) {
+    public ProductOrderClass(ProductDetailService productDetailService, Storage storage) {
         this.productDetailService = productDetailService;
-        this.storageInterface = storageInterface;
+        this.storage = storage;
     }
 
     @Override
@@ -20,7 +20,7 @@ public class ProductOrderClass implements ProductOrderService {
 
         if(orderDto.getQuantity() > 0) {
             double totalPrice = orderDto.getQuantity() * product.getProductCost();
-            storageInterface.save(new Order(product, orderDto.getQuantity(), totalPrice));
+            storage.save(new Order(product, orderDto.getQuantity(), totalPrice));
 
             System.out.println("ORDER ACCEPTED");
         } else {

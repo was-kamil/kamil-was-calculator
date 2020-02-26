@@ -1,12 +1,12 @@
-package com.kodilla.good.patterns.food2Door;
+package com.kodilla.good.patterns.challenges.food2door;
 
-import com.kodilla.good.patterns.food2Door.deliveryServices.DeliveryStandardProcess;
-import com.kodilla.good.patterns.food2Door.model.Request;
-import com.kodilla.good.patterns.food2Door.processors.ShopProccesor;
-import com.kodilla.good.patterns.food2Door.retrievers.RequestRetiever;
-import com.kodilla.good.patterns.food2Door.shopServices.LittleShopService;
+import com.kodilla.good.patterns.challenges.food2door.data.Request;
+import com.kodilla.good.patterns.challenges.food2door.service.*;
+import com.kodilla.good.patterns.challenges.food2door.service.delivery.InMemoryDelivery;
+import com.kodilla.good.patterns.challenges.food2door.service.status.InMemoryCheckOrder;
 
-public class Application {
+
+public class Main {
     public static void main(String[] args) {
         Request request = new RequestRetiever().retrieve();
         Request request2 = new RequestRetiever().retrieve2();
@@ -14,11 +14,11 @@ public class Application {
         Request request4 = new RequestRetiever().retrieve4();
         Request request5 = new RequestRetiever().retrieve5();
 
-        ShopProccesor shopProccesor = new ShopProccesor(new LittleShopService(), new DeliveryStandardProcess());
-        shopProccesor.process(request);
-        shopProccesor.process(request2);
-        shopProccesor.process(request3);
-        shopProccesor.process(request4);
-        shopProccesor.process(request5);
+        ShopProcessor shopProcessor = new ShopProcessor(new InMemoryCheckOrder(), new InMemoryDelivery());
+        shopProcessor.process(request);
+        shopProcessor.process(request2);
+        shopProcessor.process(request3);
+        shopProcessor.process(request4);
+        shopProcessor.process(request5);
     }
 }

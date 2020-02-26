@@ -11,7 +11,7 @@ public class Main {
         Product product = new Product("Coat", 1002, 50.99, Category.FASION);
         OrderDto orderDto = new OrderDto(product, 10);
 
-        ProductOrderClass productOrderClass = new ProductOrderClass(new ProductDetailClass(), new StorageClass());
+        ProductOrderClass productOrderClass = new ProductOrderClass(new ProductDetailClass(), new InMemoryStorage());
         productOrderClass.order(orderDto);
     }
 }
