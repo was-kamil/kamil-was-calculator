@@ -1,4 +1,4 @@
-package com.kodilla.ttt;
+package com.kodilla.xo;
 
 import javafx.fxml.FXML;
 import javafx.scene.Group;
@@ -8,8 +8,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Line;
 import javafx.stage.Stage;
-
-
 
 
 public class Controller {

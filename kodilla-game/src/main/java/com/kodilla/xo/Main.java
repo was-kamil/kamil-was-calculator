@@ -1,4 +1,4 @@
-package com.kodilla.ttt;
+package com.kodilla.xo;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -20,7 +20,6 @@ public class Main extends Application {
         primaryStage.setMaxHeight(700);
 
         primaryStage.show();
-
     }
 
     public static void main(String[] args) {
