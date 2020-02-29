@@ -8,10 +8,10 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Line;
 import javafx.stage.Stage;
+import java.util.Random;
 
 
 public class Controller {
-
 
     @FXML
     private Label label11;
@@ -42,86 +42,90 @@ public class Controller {
     @FXML
     private Group group;
 
-    private int counter = 0;
-    private boolean playable = true;
-    private int xScore = 0;
-    private int yScore = 0;
-    private String current;
-    private Line line = new Line();
-
     @FXML
     void initialize() {
         handle();
     }
-
     @FXML
     void closeButtonAction() {
         Stage stage = (Stage) endGame.getScene().getWindow();
         stage.close();
     }
 
-   void handle() {
+    Random rnd = new Random();
+
+    private final Checker checker = new Checker(this);
+    private Line line = new Line();
+
+    private int counter = 0;
+    private boolean playable = true;
+    private int xScore = 0;
+    private int yScore = 0;
+    private String current;
+
+
+    void handle() {
         label11.setOnMouseClicked(event -> {
             if (playable) {
                 counter++;
                 draw(label11);
-                check();
+                checker.check();
             }
         });
         label12.setOnMouseClicked(event -> {
             if (playable) {
                 counter++;
                 draw(label12);
-                check();
+                checker.check();
             }
         });
         label13.setOnMouseClicked(event -> {
             if (playable) {
                 counter++;
                 draw(label13);
-                check();
+                checker.check();
             }
         });
         label21.setOnMouseClicked(event -> {
             if (playable) {
                 counter++;
                 draw(label21);
-                check();
+                checker.check();
             }
         });
         label22.setOnMouseClicked(event -> {
             if (playable) {
                 counter++;
                 draw(label22);
-                check();
+                checker.check();
             }
         });
         label23.setOnMouseClicked(event -> {
             if (playable) {
                 counter++;
                 draw(label23);
-                check();
+                checker.check();
             }
         });
         label31.setOnMouseClicked(event -> {
             if (playable) {
                 counter++;
                 draw(label31);
-                check();
+                checker.check();
             }
         });
         label32.setOnMouseClicked(event -> {
             if (playable) {
                 counter++;
                 draw(label32);
-                check();
+                checker.check();
             }
         });
         label33.setOnMouseClicked(event -> {
             if (playable) {
                 counter++;
                 draw(label33);
-                check();
+                checker.check();
             }
         });
         newGame.setOnMouseClicked(event -> {
@@ -159,97 +163,71 @@ public class Controller {
         group.getChildren().add(line);
     }
 
-    void check() {
-        if (counter >= 5) {
-            if (label11.getText().equals(current) && label12.getText().equals(current) && label13.getText().equals(current)) {
-                if (current.equals("X")) {
-                    xScore++;
-                } else {
-                    yScore++;
-                }
-                drawLine(50,100,550,100);
-                resultsLabel.setText(String.format("Player %s WINS ", current));
-                scoreLabel.setText(String.format("SCORES: \nPlayer X -->  %d \nPlayer O -->  %d ", xScore, yScore));
-                playable = false;
-            } else if (label21.getText().equals(current) && label22.getText().equals(current) && label23.getText().equals(current)) {
-                if (current.equals("X")) {
-                    xScore++;
-                } else {
-                    yScore++;
-                }
-                drawLine(50,300,550,300);
-                resultsLabel.setText(String.format("Player %s WINS ", current));
-                scoreLabel.setText(String.format("SCORES: \nPlayer X -->  %d \nPlayer O -->  %d ", xScore, yScore));
-                playable = false;
-            } else if (label31.getText().equals(current) && label32.getText().equals(current) && label33.getText().equals(current)) {
-                if (current.equals("X")) {
-                    xScore++;
-                } else {
-                    yScore++;
-                }
-                drawLine(50,500,550,500);
-                resultsLabel.setText(String.format("Player %s WINS ", current));
-                scoreLabel.setText(String.format("SCORES: \nPlayer X -->  %d \nPlayer O -->  %d ", xScore, yScore));
-                playable = false;
-            } else if (label11.getText().equals(current) && label21.getText().equals(current) && label31.getText().equals(current)) {
-                if (current.equals("X")) {
-                    xScore++;
-                } else {
-                    yScore++;
-                }
-                drawLine(100,50,100,550);
-                resultsLabel.setText(String.format("Player %s WINS ", current));
-                scoreLabel.setText(String.format("SCORES: \nPlayer X -->  %d \nPlayer O -->  %d ", xScore, yScore));
-                playable = false;
-            } else if (label12.getText().equals(current) && label22.getText().equals(current) && label32.getText().equals(current)) {
-                if (current.equals("X")) {
-                    xScore++;
-                } else {
-                    yScore++;
-                }
-                drawLine(300,50,300,550);
-                resultsLabel.setText(String.format("Player %s WINS ", current));
-                scoreLabel.setText(String.format("SCORES: \nPlayer X -->  %d \nPlayer O -->  %d ", xScore, yScore));
-                playable = false;
-            } else if (label13.getText().equals(current) && label23.getText().equals(current) && label33.getText().equals(current)) {
-                if (current.equals("X")) {
-                    xScore++;
-                } else {
-                    yScore++;
-                }
-                drawLine(500,50,500,550);
-                resultsLabel.setText(String.format("Player %s WINS ", current));
-                scoreLabel.setText(String.format("SCORES: \nPlayer X -->  %d \nPlayer O -->  %d ", xScore, yScore));
-                playable = false;
-            } else if (label11.getText().equals(current) && label22.getText().equals(current) && label33.getText().equals(current)) {
-                if (current.equals("X")) {
-                    xScore++;
-                } else {
-                    yScore++;
-                }
-                drawLine(50,50,550,550);
-                resultsLabel.setText(String.format("Player %s WINS ", current));
-                scoreLabel.setText(String.format("SCORES: \nPlayer X -->  %d \nPlayer O -->  %d ", xScore, yScore));
-                playable = false;
-            } else if (label13.getText().equals(current) && label22.getText().equals(current) && label31.getText().equals(current)) {
-                if (current.equals("X")) {
-                    xScore++;
-                } else {
-                    yScore++;
-                }
-                drawLine(550,50,50,550);
-                resultsLabel.setText(String.format("Player %s WINS ", current));
-                scoreLabel.setText(String.format("SCORES: \nPlayer X -->  %d \nPlayer O -->  %d ", xScore, yScore));
-                playable = false;
-            } else if (counter == 9) {
-                resultsLabel.setText(String.format("Players draw"));
-                scoreLabel.setText(String.format("SCORES: \nPlayer X -->  %d \nPlayer O -->  %d ", xScore, yScore));
-            }
-        }
+    boolean isSecondDiagonalTheSame() {
+        return label13.getText().equals(current) && label22.getText().equals(current) && label31.getText().equals(current);
+    }
 
-        if (counter == 9) {
-            resultsLabel.setText(String.format("Players draw"));
-            scoreLabel.setText(String.format("SCORES: \nPlayer X -->  %d \nPlayer O -->  %d ", xScore, yScore));
-        }
+    boolean isFirstDiagonalTheSame() {
+        return label11.getText().equals(current) && label22.getText().equals(current) && label33.getText().equals(current);
+    }
+
+    boolean isThirdColumnTheSame() {
+        return label13.getText().equals(current) && label23.getText().equals(current) && label33.getText().equals(current);
+    }
+
+    boolean isSecondColumnTheSame() {
+        return label12.getText().equals(current) && label22.getText().equals(current) && label32.getText().equals(current);
+    }
+
+    boolean isFirstColumnTheSame() {
+        return label11.getText().equals(current) && label21.getText().equals(current) && label31.getText().equals(current);
+    }
+
+    boolean isThirdRowTheSame() {
+        return label31.getText().equals(current) && label32.getText().equals(current) && label33.getText().equals(current);
+    }
+
+    boolean isSecondRowTheSame() {
+        return label21.getText().equals(current) && label22.getText().equals(current) && label23.getText().equals(current);
+    }
+
+    boolean isFirstRowTheSame() {
+        return label11.getText().equals(current) && label12.getText().equals(current) && label13.getText().equals(current);
+    }
+
+    public int getyScore() {
+        return yScore;
+    }
+
+    public Label getResultsLabel() {
+        return resultsLabel;
+    }
+
+    public int getxScore() {
+        return xScore;
+    }
+
+    public String getCurrent() {
+        return current;
+    }
+
+    public int getCounter() {
+        return counter;
+    }
+
+    public Label getScoreLabel() {
+        return scoreLabel;
+    }
+
+    public void setyScore(int yScore) {
+        this.yScore = yScore;
+    }
+
+    public void setxScore(int xScore) {
+        this.xScore = xScore;
+    }
+
+    public void setPlayable(boolean playable) {
+        this.playable = playable;
     }
 }
