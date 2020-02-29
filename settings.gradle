@@ -7,4 +7,5 @@ include 'kodilla-sampleGame'
 include 'kodilla-good-patterns'
 include 'kodilla-spring-intro'
 include 'kodilla-game'
+include 'kodilla-spring'
 
