@@ -8,6 +8,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Line;
 import javafx.stage.Stage;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 
@@ -52,8 +54,6 @@ public class Controller {
         stage.close();
     }
 
-    Random rnd = new Random();
-
     private final Checker checker = new Checker(this);
     private Line line = new Line();
 
@@ -64,69 +64,58 @@ public class Controller {
     private String current;
 
 
+    void labelList(Label lbl) {
+
+        Random random = new Random(9);
+        int result = random.nextInt() + 1;
+
+        List<Label> labels = new ArrayList<>();
+        labels.add(label11);
+        labels.add(label12);
+        labels.add(label13);
+        labels.add(label21);
+        labels.add(label22);
+        labels.add(label23);
+        labels.add(label31);
+        labels.add(label32);
+        labels.add(label33);
+
+        Label randomLabel = labels.get(result);
+        if (lbl.getText().equals("")) {
+            draw(randomLabel);
+        } else {
+            random.nextInt();
+        }
+    }
+
+
     void handle() {
         label11.setOnMouseClicked(event -> {
-            if (playable) {
-                counter++;
-                draw(label11);
-                checker.check();
-            }
+            checkLabel(label11);
         });
         label12.setOnMouseClicked(event -> {
-            if (playable) {
-                counter++;
-                draw(label12);
-                checker.check();
-            }
+            checkLabel(label12);
         });
         label13.setOnMouseClicked(event -> {
-            if (playable) {
-                counter++;
-                draw(label13);
-                checker.check();
-            }
+            checkLabel(label13);
         });
         label21.setOnMouseClicked(event -> {
-            if (playable) {
-                counter++;
-                draw(label21);
-                checker.check();
-            }
+            checkLabel(label21);
         });
         label22.setOnMouseClicked(event -> {
-            if (playable) {
-                counter++;
-                draw(label22);
-                checker.check();
-            }
+            checkLabel(label22);
         });
         label23.setOnMouseClicked(event -> {
-            if (playable) {
-                counter++;
-                draw(label23);
-                checker.check();
-            }
+            checkLabel(label23);
         });
         label31.setOnMouseClicked(event -> {
-            if (playable) {
-                counter++;
-                draw(label31);
-                checker.check();
-            }
+            checkLabel(label31);
         });
         label32.setOnMouseClicked(event -> {
-            if (playable) {
-                counter++;
-                draw(label32);
-                checker.check();
-            }
+            checkLabel(label32);
         });
         label33.setOnMouseClicked(event -> {
-            if (playable) {
-                counter++;
-                draw(label33);
-                checker.check();
-            }
+            checkLabel(label33);
         });
         newGame.setOnMouseClicked(event -> {
             Label[][] lblArr = {{label11, label12, label13}, {label21, label22, label23}, {label31, label32, label33}};
@@ -139,6 +128,15 @@ public class Controller {
             counter = 0;
             group.getChildren().remove(line);
         });
+    }
+
+    void checkLabel(Label lbl) {
+        if (playable) {
+            counter++;
+            draw(lbl);
+            checker.check();
+            labelList(lbl);
+        }
     }
 
     void draw(Label lbl) {
