@@ -11,6 +11,7 @@ import javafx.stage.Stage;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 
 public class Controller {
@@ -66,9 +67,6 @@ public class Controller {
 
     void labelList(Label lbl) {
 
-        Random random = new Random(9);
-        int result = random.nextInt() + 1;
-
         List<Label> labels = new ArrayList<>();
         labels.add(label11);
         labels.add(label12);
@@ -80,12 +78,13 @@ public class Controller {
         labels.add(label32);
         labels.add(label33);
 
-        Label randomLabel = labels.get(result);
-        if (lbl.getText().equals("")) {
-            draw(randomLabel);
-        } else {
-            random.nextInt();
-        }
+        List<Label> emptyLabels = labels.stream()
+                .filter(label -> label.getText().equals(""))
+                .collect(Collectors.toList());
+
+        Random random = new Random();
+        int result = random.nextInt(emptyLabels.size());
+        draw(emptyLabels.get(result));
     }
 
 
@@ -135,7 +134,9 @@ public class Controller {
             counter++;
             draw(lbl);
             checker.check();
+            counter++;
             labelList(lbl);
+            checker.check();
         }
     }
 
