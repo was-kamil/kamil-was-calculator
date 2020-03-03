@@ -9,18 +9,17 @@ import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.annotation.Scope;
 import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class SpringRunnerTestSuite {
+public class SpringRunnerTestSuite_old {
     @Test
     public void testCircleLoadedIntoContainer() {
         //Given
         ApplicationContext context =
                 new AnnotationConfigApplicationContext("com.kodilla.spring");
-        Shape shape = (Shape)context.getBean("circle");
+        Shape shape = context.getBean(Circle.class);
         //When
         String name = shape.getShapeName();
         //Then
@@ -32,7 +31,7 @@ public class SpringRunnerTestSuite {
         //Given
         ApplicationContext context =
                 new AnnotationConfigApplicationContext("com.kodilla.spring");
-        Shape shape = (Shape)context.getBean("triangle");
+        Shape shape = context.getBean(Triangle.class);
         //When
         String name = shape.getShapeName();
         //Then
@@ -44,22 +43,10 @@ public class SpringRunnerTestSuite {
         //Given
         ApplicationContext context =
                 new AnnotationConfigApplicationContext("com.kodilla.spring");
-        Shape shape = (Shape)context.getBean("createSquare");
+        Shape shape = context.getBean(Square.class);
         //When
         String name = shape.getShapeName();
         //Then
         Assert.assertEquals("This is a square.", name);
-    }
-
-    @Test
-    public void testShapeLoadedIntoContainer() {
-        //Given
-        ApplicationContext context =
-                new AnnotationConfigApplicationContext("com.kodilla.spring");
-        Shape shape = (Shape)context.getBean("chosenShape");
-        //When
-        String name = shape.getShapeName();
-        //Then
-        System.out.println("Chosen shape says: " + name);
     }
 }
