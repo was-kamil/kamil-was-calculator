@@ -36,3 +36,5 @@ out/
 
 /gradle
 settings.gradle
+/kodilla-sampleGame
+.gitignore
